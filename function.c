@@ -94,7 +94,7 @@ void buscarPais(){
      pais = criarPais(nome,idade,idh);
 
      if(pais!=NULL){
-       if(colBuscar(mundo, pais, cmpPais) != NULL){
+       if(sllFind(mundo, pais, cmpPais) != NULL){
          printf("\n\t\t\t PAIS RECONHECIDO!!\n");
        }else{
          printf("\t\t\t PAIS NAO ENCONTRADO. TENTE NOVAMENTE\n");
@@ -128,16 +128,16 @@ void destruirPais(){
      pais = criarPais(nome,idade,idh);
 
      if(pais!=NULL){
-       if(colRemover(mundo, pais, cmpPais)!=NULL){
+       if(sllRemove(mundo, pais, cmpPais)!=NULL){
          printf("\n\t\t\tPAIS DESTRUIDO!!\n\n");
-       if(!colPegarPrimeiro(mundo)){
+       if(!sllgetFirst(mundo)){
          int op;
 
          printf("\t\t\t Você não tem mais paises no seu mundo. Deseja destrui-lo?\n\t\t\t1. SIM\n \t\t\t2. NAO\n\t\t\tOpcao:");
          scanf("%d", &op);
 
          if(op==1){
-           colDestruir(mundo);
+          sllDestroy(mundo);
            mundo = NULL;
            
            printf("\n\t\t\tUma grande praga assolou seu mundo! Você está no espaço, volte\n");
