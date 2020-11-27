@@ -1,5 +1,5 @@
-#ifndef COLECAO_H
-#define COLECAO_H
+#ifndef SLL_H
+#define SLL_H
 
 #define TRUE 1
 #define FALSE 0

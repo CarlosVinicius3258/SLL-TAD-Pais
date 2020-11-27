@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pais.h"
-#include "colecao.h"
+#include "sll.h"
 
 #define TRUE 1
 #define FALSE 0
 
-Colecao* mundo = NULL;
+SLList* mundo = NULL;
 Pais* pais = NULL;
 //----------------OPCOES---------------\\
 
@@ -16,13 +16,11 @@ Pais* pais = NULL;
 void fundarPais(){
   
   if(mundo==NULL){
-    int tamanho = 0;
+  
 
-    printf("\n\t\t\tCRIE SEU MUNDO!!\n\t\t\tQUANTIDADE DE PAISES: ");
-    scanf("%d", &tamanho);
-
+    printf("\n\t\t\tMundo Criado!!\t\t\t");
     //Criar mundo
-    mundo = colCriar(tamanho);
+    mundo = sllCreate();
      //Adicionar pais ao mundo
   } 
 
@@ -43,7 +41,7 @@ void fundarPais(){
      pais = criarPais(nome,idade,idh);
 
      if(pais!=NULL){
-       if(colInserir(mundo, pais)){
+       if(sllInsertFirst(mundo, pais)){
          printf("\n\t\t\tParabéns!! Pais fundado.\n");
        }else{
        printf("\n\t\t\tErro! Tente novamente.\n");

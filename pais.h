@@ -1,5 +1,5 @@
-#ifndef ALUNO_H
-#define ALUNO_H
+#ifndef PAIS_H
+#define PAIS_H
 
 #define TRUE 1
 #define FALSE 0
