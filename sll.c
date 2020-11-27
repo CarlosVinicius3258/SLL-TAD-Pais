@@ -136,13 +136,15 @@ void *sllRemove( SLList *l, void *key, int (*cmp)(void*, void*))
 void *sllgetFirst(SLList *l)
 {
   SLNode *first = NULL;
+  void* data;
   if(l != NULL)
   {
     if(l->first!=NULL)
     {
      first = l->first;
      l->cur = first;
-     return l->cur;
+     data = l->cur->data;
+     return data;
     }
   }
   return NULL;
@@ -152,6 +154,7 @@ void *sllgetFirst(SLList *l)
 void *sllgetNext(SLList *l)
 {
   SLNode *next;
+  void* data;
   if(l != NULL)
   {
     if(l->first!=NULL)
@@ -159,7 +162,8 @@ void *sllgetNext(SLList *l)
       if(l->cur->next!=NULL){
         next = l->cur->next;
         l->cur = next;
-        return l->cur;
+        data = l->cur>data;
+        return data;
       }
     }
   }

@@ -56,7 +56,7 @@ void fundarPais(){
 //2. Lista as informações dos paises no mundo
 void listarPaises(){
   if(mundo!=NULL){
-    pais = colPegarPrimeiro(mundo);
+    pais = sllgetFirst(mundo);
 
     while(pais!=NULL){
         printf("\n\t\t\t -- PAIS -- \n");
@@ -64,10 +64,10 @@ void listarPaises(){
         printf("\t\t\t IDADE:  %d\n", pegarIdade(pais));
         printf("\t\t\t IDH: %f \n\n", pegarIdh(pais));
         
-        pais = colPegarProximo(mundo); 
+        pais = sllgetNext(mundo); 
     }
   }else{
-    printf("\n\t\t\tPRIMEIRO FUNDE ALGUNS PAISES PARA SABER QUAIS EXISTEM. \n");
+    printf("\n\t\t\tPRIMEIRO FUNDA ALGUNS PAISES PARA SABER QUAIS EXISTEM. \n");
   }
   
 }
