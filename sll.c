@@ -24,6 +24,7 @@ SLList *sllCreate()
   if(l!=NULL)
   {
     l->first = NULL;
+    l->cur = NULL;
     return l;
     }
     return NULL;
@@ -78,7 +79,7 @@ int sllDestroy(SLList *l){
 }
 
 //Encontra um item na coleção
-void *sllFind(SLList *l, void *key, int (*cmp)(void*, void*))
+void *sllQuery(SLList *l, void *key, int (*cmp)(void*, void*))
 {
 
   SLNode *spec =NULL;
@@ -88,10 +89,10 @@ void *sllFind(SLList *l, void *key, int (*cmp)(void*, void*))
     if(l->first!=NULL)
     {
       spec = l->first;
-      while(spec->next != NULL && cmp(key, spec) != TRUE){
+      while(spec->next != NULL && cmp(key, spec->data) != TRUE){
         spec = spec->next;
       }
-      if(cmp(key, spec) == TRUE)
+      if(cmp(key, spec->data) == TRUE)
       {
           return spec->data;
       }
@@ -103,7 +104,6 @@ void *sllFind(SLList *l, void *key, int (*cmp)(void*, void*))
 
 void *sllRemove( SLList *l, void *key, int (*cmp)(void*, void*))
 {
-  int count,count2 = 0;
   SLNode *spec,*prev = NULL;
   void* data;
 
@@ -111,21 +111,23 @@ void *sllRemove( SLList *l, void *key, int (*cmp)(void*, void*))
   {
     if(l->first != NULL)
     {
-      spec, prev = l->first;
-      while(spec != NULL && cmp(key, spec) != TRUE){
+      spec = l->first;
+      prev = NULL;
+      while(spec->next != NULL && cmp(key, spec->data) != TRUE){
+        prev = spec;
         spec = spec->next;
-        count++;
+        
       }
 
-      if(cmp(key,spec) == TRUE){
-        while(count2 < count){
-          prev = prev->next;
-          count2++;
-        }
+      if(cmp(key,spec->data) == TRUE){
         data = spec->data;
-        prev->next = spec->next;
+        if(spec == l->first){
+          l->first = spec->next;
+        }else{
+          prev->next = spec->next;
+        }
         free(spec);
-        return data;
+          return data;
       }
     }
   return NULL;
@@ -133,17 +135,17 @@ void *sllRemove( SLList *l, void *key, int (*cmp)(void*, void*))
 
 }
 
-void *sllgetFirst(SLList *l)
+void* sllgetFirst(SLList *l)
 {
   SLNode *first = NULL;
-  void* data;
+  void* data = NULL;
   if(l != NULL)
   {
     if(l->first!=NULL)
     {
      first = l->first;
      l->cur = first;
-     data = l->cur->data;
+     data = first->data;
      return data;
     }
   }
@@ -154,18 +156,28 @@ void *sllgetFirst(SLList *l)
 void *sllgetNext(SLList *l)
 {
   SLNode *next;
-  void* data;
+  void* data = NULL;
   if(l != NULL)
   {
     if(l->first!=NULL)
     {
+      next = l->cur->next;
       if(l->cur->next!=NULL){
-        next = l->cur->next;
         l->cur = next;
-        data = l->cur>data;
+        data = next->data;
         return data;
       }
     }
+  }
+  return NULL;
+}
+
+void* SLLGetData(SLList *l){
+  void* data = NULL;
+  if(l!=NULL){
+    data = l->cur->data;
+
+    return data;
   }
   return NULL;
 }

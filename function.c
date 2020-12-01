@@ -18,7 +18,7 @@ void fundarPais(){
   if(mundo==NULL){
   
 
-    printf("\n\t\t\tMundo Criado!!\t\t\t");
+    printf("\n\t\t\tMundo Criado!!\n\n\t\t\t");
     //Criar mundo
     mundo = sllCreate();
      //Adicionar pais ao mundo
@@ -27,7 +27,7 @@ void fundarPais(){
      char nome[30];
      int idade;
      float idh;
-     printf("\t\t\t --- Informacoes de pais ---\n");
+     printf("\t\t\t --- Informacoes de pais ---\n\n");
      printf("\t\t\tNome do pais: ");
      scanf("%s", nome);
 
@@ -55,10 +55,12 @@ void fundarPais(){
 
 //2. Lista as informações dos paises no mundo
 void listarPaises(){
+  void *data = NULL;
   if(mundo!=NULL){
-    pais = sllgetFirst(mundo);
-
+    Pais *pais = sllgetFirst(mundo);
+   
     while(pais!=NULL){
+        
         printf("\n\t\t\t -- PAIS -- \n");
         printf("\t\t\t NOME:  %s\n", pegarNome(pais));
         printf("\t\t\t IDADE:  %d\n", pegarIdade(pais));
@@ -81,20 +83,20 @@ void buscarPais(){
     int idade;
     float idh;
 
-     printf("\t\t\t --- INFORMACOES DO PAIS ---\n");
-     printf("\t\t\tNOME DO PAIS: ");
+     printf("\n\t\t\t --- INFORMACOES DO PAIS ---\n");
+     printf("\n\t\t\tNOME DO PAIS: \n");
      scanf("%s", nome);
-
-     printf("\t\t\tIDADE DO PAIS: ");
+     
+     printf("\n\t\t\tIDADE DO PAIS: ");
      scanf("%d", &idade);
 
-     printf("\t\t\tIDH DO PAIS: ");
+     printf("\n\t\t\tIDH DO PAIS: ");
      scanf("%f", &idh);
 
      pais = criarPais(nome,idade,idh);
 
      if(pais!=NULL){
-       if(sllFind(mundo, pais, cmpPais) != NULL){
+       if(sllQuery(mundo, pais, cmpPais) != NULL){
          printf("\n\t\t\t PAIS RECONHECIDO!!\n");
        }else{
          printf("\t\t\t PAIS NAO ENCONTRADO. TENTE NOVAMENTE\n");

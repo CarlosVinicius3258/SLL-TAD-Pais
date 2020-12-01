@@ -16,7 +16,7 @@ void* sllRemoveFirst(SLList *l);
 
 int sllDestroy(SLList *l);
 
-void *sllFind(SLList *l, void *key, int (*cmp)(void*, void*));
+void *sllQuery(SLList *l, void *key, int (*cmp)(void*, void*));
 
 void *sllRemove( SLList *l, void *key, int (*cmp)(void*, void*));
 

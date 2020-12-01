@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pais.h"
-#include "colecao.h"
+#include "sll.h"
 #include "function.h"
 
 #define TRUE 1
@@ -39,7 +39,7 @@ int main(void){
           destruirPais();
         break;
         case 5:
-          sair();
+          sair(); 
           break;
 
         default:
